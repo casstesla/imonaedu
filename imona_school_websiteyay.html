@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imona School - Empowering Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --secondary-color: #f8f8f8;
+            --accent-color: #c5a47e;
+            --text-color: #1a2238;
+            --light-text: #777777;
+            --dark-bg: #1a2238;
+            --light-beige: #f5e6d3;
+            --gradient-primary: linear-gradient(135deg, #c5a47e 0%, #d4b896 100%);
+            --gradient-dark: linear-gradient(135deg, #1a2238 0%, #2a3348 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: var(--accent-color);
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+
+        .donate-btn {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(197, 164, 126, 0.3);
+        }
+
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(197, 164, 126, 0.4);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(26, 34, 56, 0.6), rgba(26, 34, 56, 0.7)), 
+                        url('https://i.ibb.co/dkhFS9Z/Imona-main.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(197, 164, 126, 0.1) 0%, rgba(26, 34, 56, 0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 8px 25px rgba(197, 164, 126, 0.3);
+        }
+
+        .cta-secondary {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .cta-primary:hover {
+            box-shadow: 0 12px 35px rgba(197, 164, 126, 0.4);
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: var(--text-color);
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--light-text);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Philosophy Section */
+        #philosophy {
+            background: var(--gradient-dark);
+            color: white;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .philosophy-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .philosophy-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .philosophy-icon {
+            font-size: 3.5rem;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .philosophy-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            color: var(--light-beige);
+        }
+
+        /* Programs Section */
+        #programs {
+            background: var(--secondary-color);
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .program-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .program-card-content {
+            padding: 30px;
+        }
+
+        .program-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .program-card p {
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+
+        .program-card .cta-button {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 25px;
+        }
+
+        /* Volunteers Section */
+        #volunteers {
+            background: var(--gradient-dark);
+            color: white;
+        }
+
+        .volunteers-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .volunteer-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--light-beige);
+        }
+
+        .volunteer-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .benefit-item i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-right: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--light-beige);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        .university-support {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .university-support i {
+            color: var(--accent-color);
+        }
+
+        /* Page Styles */
+        .page-header {
+            background: var(--gradient-dark);
+            color: white;
+            padding: 120px 0 60px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .page-content {
+            padding: 80px 0;
+        }
+
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .curriculum-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .curriculum-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .curriculum-card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .curriculum-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--secondary-color);
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .submit-button {
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(197, 164, 126, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .volunteers-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .philosophy-grid,
+            .programs-grid,
+            .curriculum-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hidden Pages */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .level-badge {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo" onclick="showPage('home')">
+                <i class="fas fa-graduation-cap"></i>
+                Imona School
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('curriculum')">Curriculum</a></li>
+                <li><a href="#" onclick="showPage('programs')">Programs</a></li>
+                <li><a href="#" onclick="showPage('volunteers')">Volunteers</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#" class="donate-btn"><i class="fas fa-heart"></i> Donate</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Empowering Minds, Building Futures</h1>
+                <p class="subtitle">At Imona School, we believe every student deserves access to quality education that opens doors to endless possibilities.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button cta-primary" onclick="showPage('curriculum')">Explore Programs</a>
+                    <a href="#" class="cta-button cta-secondary" onclick="showPage('contact')">Schedule Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy Section -->
+        <section id="philosophy" class="section">
+            <div class="container">
+                <h2 class="section-title" style="color: var(--light-beige);">Our Philosophy</h2>
+                <p class="section-subtitle" style="color: #ccc;">We believe in nurturing the whole student - mind, body, and spirit</p>
+                <div class="philosophy-grid">
+                    <div class="philosophy-item fade-in">
+                        <i class="fas fa-lightbulb philosophy-icon"></i>
+                        <h3>Innovation in Learning</h3>
+                        <p>We embrace cutting-edge teaching methods and technology to make learning engaging and effective for every student.</p>
+                    </div>
+                    <div class="philosophy-item fade-in">
+                        <i class="fas fa-users philosophy-icon"></i>
+                        <h3>Community Focused</h3>
+                        <p>Building strong connections between students, families, and our local community to create a supportive learning environment.</p>
+                    </div>
+                    <div class="philosophy-item fade-in">
+                        <i class="fas fa-globe philosophy-icon"></i>
+                        <h3>Global Perspective</h3>
+                        <p>Preparing students to be global citizens with the skills and knowledge to succeed in our interconnected world.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Preview -->
+        <section id="programs" class="section">
+            <div class="container">
+                <h2 class="section-title">Our Programs</h2>
+                <p class="section-subtitle">Comprehensive educational programs designed to meet diverse learning needs</p>
+                <div class="programs-grid">
+                    <div class="program-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop" alt="English Classes">
+                        <div class="program-card-content">
+                            <h3>English Language Programs</h3>
+                            <p>From basic to advanced levels, including TOEFL, IELTS, and Duolingo preparation courses.</p>
+                            <a href="#" class="cta-button" onclick="showPage('curriculum')">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="program-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=200&fit=crop" alt="SAT Prep">
+                        <div class="program-card-content">
+                            <h3>SAT Preparation</h3>
+                            <p>Comprehensive SAT prep courses designed to maximize your test scores and college opportunities.</p>
+                            <a href="#" class="cta-button" onclick="showPage('curriculum')">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="program-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=200&fit=crop" alt="Events">
+                        <div class="program-card-content">
+                            <h3>Educational Events</h3>
+                            <p>Regular workshops, seminars, and cultural events to enrich the learning experience.</p>
+                            <a href="#" class="cta-button" onclick="showPage('programs')">View Events</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Volunteers Section -->
+        <section id="volunteers" class="section">
+            <div class="container">
+                <h2 class="section-title" style="color: var(--light-beige);">Join Our Mission</h2>
+                <div class="volunteers-content">
+                    <div class="volunteer-info">
+                        <h3>Become a Volunteer</h3>
+                        <p>Make a difference in students' lives by joining our volunteer program. Whether you're a professional educator, a college student, or someone passionate about education, we have opportunities for you.</p>
+                        <a href="#" class="cta-button cta-primary" onclick="showPage('volunteers')">Get Involved</a>
+                    </div>
+                    <div class="volunteer-benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <h4>Make an Impact</h4>
+                                <p>Help shape young minds</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <h4>Gain Experience</h4>
+                                <p>Develop teaching skills</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-handshake"></i>
+                            <div>
+                                <h4>Build Community</h4>
+                                <p>Connect with like-minded people</p>
+                            </div>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h4>Personal Growth</h4>
+                                <p>Expand your horizons</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Curriculum Page -->
+    <div id="curriculum" class="page">
+        <div class="page-header">
+            <div class="container">
+                <h1>Our Curriculum</h1>
+                <p class="subtitle">Comprehensive educational programs tailored to your goals</p>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="container">
+                <div class="curriculum-grid">
+                    <div class="curriculum-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Free Consultations</h3>
+                        <p>Get personalized guidance on your educational journey with our expert counselors. We'll help you choose the right program and create a learning plan that fits your goals.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> 30-minute one-on-one session</li>
+                            <li><i class="fas fa-check"></i> Personalized learning assessment</li>
+                            <li><i class="fas fa-check"></i> Program recommendations</li>
+                            <li><i class="fas fa-check"></i> Study plan development</li>
+                        </ul>
+                        <a href="#" class="cta-button cta-primary" onclick="showPage('contact')">Book Now</a>
+                    </div>
+
+                    <div class="curriculum-card">
+                        <i class="fas fa-language"></i>
+                        <h3>English - Basic Level <span class="level-badge">A1-A2</span></h3>
+                        <p>Perfect for beginners, this course covers fundamental English skills including basic grammar, vocabulary, and conversation.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Grammar fundamentals</li>
+                            <li><i class="fas fa-check"></i> Essential vocabulary</li>
+                            <li><i class="fas fa-check"></i> Basic conversation skills</li>
+                            <li><i class="fas fa-check"></i> Reading and writing basics</li>
+                        </ul>
+                        <a href="#" class="cta-button cta-primary" onclick="showPage('contact')">Enroll Today</a>
+                    </div>
+
+                    <div class="curriculum-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>English - All Levels <span class="level-badge">A1-C2</span></h3>
+                        <p>Comprehensive English program that adapts to your current level and helps you progress through all proficiency stages.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Level assessment and placement</li>
+                            <li><i class="fas fa-check"></i> Flexible scheduling</li>
+                            <li><i class="fas fa-check"></i> Small class sizes</li>
+                            <li><i class="fas fa-check"></i> Progress tracking</li>
+                        </ul>
+                        <a href="#" class="cta-button cta-primary" onclick="showPage('contact')">Get Started</a>
+                    </div>
+
+                    <div class="curriculum-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>English - Advanced <span class="level-badge">B2-C2</span></h3>
+                        <p>Advanced English course focusing on academic writing, professional communication, and complex language structures.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Academic writing skills</li>
+                            <li><i class="fas fa-check"></i> Professional communication</li>
+                            <li><i class="fas fa-check"></i> Critical thinking in English</li>
+                            <li><i class="fas fa-check"></i> Presentation skills</li>
+                        </ul>
+                        <a href="#" class="cta-button cta-primary" onclick="showPage('contact')">Apply Now</a>
+                    </div>
+
+                    <div class="curriculum-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Educational Events</h3>
+                        <p>Regular workshops, seminars, and cultural events designe
